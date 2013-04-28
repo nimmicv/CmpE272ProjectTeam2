@@ -13,8 +13,8 @@ shinyServer(function(input,output){
   
   output$caption <- renderText({formulaText()})
   output$gvis <- renderGvis({
-  data1<- SantaClaraCountyCrimeData3[City==input$city1,]
-  data2<-SantaClaraCountyCrimeData3[City==input$city2,]
+  data1<- SantaClaraCountyCrimeData3[SantaClaraCountyCrimeData3$City==input$city1,]
+  data2<-SantaClaraCountyCrimeData3[SantaClaraCountyCrimeData3$City==input$city2,]
   data<-rbind(data1,data2)
   gvisMotionChart(data,idvar="City",timevar="Year")
   })
