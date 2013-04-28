@@ -11,36 +11,40 @@ shinyUI(pageWithSidebar(
     selectInput("city1", 
                 "Select City 1",
                 list(
-                "Campbell" = "Campbell",
-                "Gilroy" = "Gilroy", 
-                "Los Altos" = "Los Altos",
-                "Los Gatos" = "Los Gatos",
-                "Milpitas" = "Milpitas",
-                "Morgan Hill" = "Morgan Hill",
-                "Mountain View" = "Mountain View",
-                "Santa Clara" = "Santa Clara",
-                "San Jose" = "San Jose",
-                "Sunnyvale" = "Sunnyvale")),
+                  "Campbell" = "Campbell",
+                  "Gilroy" = "Gilroy", 
+                  "Los Altos" = "Los Altos",
+                  "Los Gatos" = "Los Gatos",
+                  "Milpitas" = "Milpitas",
+                  "Morgan Hill" = "Morgan Hill",
+                  "Mountain View" = "Mountain View",
+                  "Santa Clara" = "Santa Clara",
+                  "San Jose" = "San Jose",
+                  "Sunnyvale" = "Sunnyvale")),
     
     selectInput("city2", 
                 "Select City 2",
                 list(
-                     
-                     "Gilroy" = "Gilroy", 
-                     "Los Altos" = "Los Altos",
-                     "Los Gatos" = "Los Gatos",
-                     "Milpitas" = "Milpitas",
-                     "Morgan Hill" = "Morgan Hill",
-                     "Mountain View" = "Mountain View",
-                     "Santa Clara" = "Santa Clara",
-                     "San Jose" = "San Jose",
-                     "Sunnyvale" = "Sunnyvale",
-                     "Campbell" = "Campbell"))
-    ),
+                  
+                  "Gilroy" = "Gilroy", 
+                  "Los Altos" = "Los Altos",
+                  "Los Gatos" = "Los Gatos",
+                  "Milpitas" = "Milpitas",
+                  "Morgan Hill" = "Morgan Hill",
+                  "Mountain View" = "Mountain View",
+                  "Santa Clara" = "Santa Clara",
+                  "San Jose" = "San Jose",
+                  "Sunnyvale" = "Sunnyvale",
+                  "Campbell" = "Campbell")),
+    helpText("Note:All the data collected are real data from FBI websites."),
+    
+    submitButton("Update View")
+  ),
   
   # Show a plot of the generated distribution
   mainPanel(
-    h2(textOutput("caption")),
+    p(textOutput("caption")),
     htmlOutput("gvis")
-    )
+   
+  )
 ))
