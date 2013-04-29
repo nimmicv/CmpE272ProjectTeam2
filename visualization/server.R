@@ -3,7 +3,6 @@ library(googleVis)
 library(datasets)
 
 SantaClaraCountyCrimeData3 <- read.csv("SantaClaraCountyCrimeData3.csv")
-Gilroy <- read.csv("/Users/manu/Desktop/MyData/Gilroy.csv")
 
 shinyServer(function(input,output){
   formulaText <- reactive({

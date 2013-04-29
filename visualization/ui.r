@@ -4,10 +4,12 @@ library(shiny)
 shinyUI(div(style="background-image: url('http://2.bp.blogspot.com/_oigT0GOX_oY/TUaTLM1xBlI/AAAAAAAAAXs/i6atDqKiSM0/s1600/The-best-top-desktop-blue-wallpapers-blue-wallpaper-blue-background-hd-6.jpg')",pageWithSidebar(
   
   # Application title
-  div(style = "text-align:center;color:white",headerPanel("Visualize Data of Santa Clara County !")),
-  
+  div(style = "text-align:center;color:white;text-shadow:5px 5px 5px blue",headerPanel("Visualize and Predict Crime of Santa Clara County !")), 
   # Sidebar with a slider input for number of observations
-  sidebarPanel(
+ sidebarPanel( tags$head(
+     tags$style(type='text/css', ".span4 { margin-top:23px; }"),
+   tags$style(type='text/css', ".well { background-color:lightsteelblue; }")
+ ),
     selectInput("Choice",
                 "Select your Choice",
                 list("Visualize" = 1,
