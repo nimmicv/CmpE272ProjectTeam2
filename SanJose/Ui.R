@@ -1,9 +1,10 @@
 library(shiny)
 
 # Define UI for application that plots random distributions 
-shinyUI(div(style="background-image: url('http://2.bp.blogspot.com/_oigT0GOX_oY/TUaTLM1xBlI/AAAAAAAAAXs/i6atDqKiSM0/s1600/The-best-top-desktop-blue-wallpapers-blue-wallpaper-blue-background-hd-6.jpg')",
-            pageWithSidebar(
-  
+# shinyUI(div(style="background-image: url('http://2.bp.blogspot.com/_oigT0GOX_oY/TUaTLM1xBlI/AAAAAAAAAXs/i6atDqKiSM0/s1600/The-best-top-desktop-blue-wallpapers-blue-wallpaper-blue-background-hd-6.jpg')",
+
+shinyUI(pageWithSidebar(
+
   # Application title
   headerPanel("Visualize Data of Santa Clara County !"),
   
@@ -16,7 +17,16 @@ shinyUI(div(style="background-image: url('http://2.bp.blogspot.com/_oigT0GOX_oY/
       tags$style(type='text/css', ".well { max-width: 310px;background-color: re }"),
       tags$style(type='text/css', ".span4 { max-width: 310px; }")
     ),
-    
+
+#       selectInput(
+#      "plotType", "Plot Type",
+#      c(Current = "current",
+#        Predict = "predict")),
+checkboxInput("current", "CURRENT STATISTICS"),
+checkboxInput("predict", "PREDICT"),
+
+conditionalPanel(
+      condition = "input.current == true",       
      selectInput("city1", 
                 "Select City 1",
                 list(
@@ -30,7 +40,7 @@ shinyUI(div(style="background-image: url('http://2.bp.blogspot.com/_oigT0GOX_oY/
                   "Santa Clara" = "Santa Clara",
                   "San Jose" = "San Jose",
                   "Sunnyvale" = "Sunnyvale")),
-    
+
     selectInput("city2", 
                 "Select City 2",
                 list(
@@ -46,9 +56,16 @@ shinyUI(div(style="background-image: url('http://2.bp.blogspot.com/_oigT0GOX_oY/
                   "Sunnyvale" = "Sunnyvale",
                   "Campbell" = "Campbell")),
     helpText("Note:All the data collected are real data from FBI websites."),
+
+
     
-    submitButton("Update View"),
+#    submitButton("Update View")
+#    downloadButton('downloadData', 'Download data for Santa Clara County')
     
+     ),
+ 
+conditionalPanel(
+      condition = "input.predict == true",       
     selectInput("city", 
                 "Select City to Predict",
                 list(
@@ -61,17 +78,22 @@ shinyUI(div(style="background-image: url('http://2.bp.blogspot.com/_oigT0GOX_oY/
                   "Mountain View" = "Mountain View",
                   "Santa Clara" = "Santa Clara",
                   "San Jose" = "San Jose",
-                  "Sunnyvale" = "Sunnyvale")),
-    submitButton("Predict")
-  ),
-   
-    
+                  "Sunnyvale" = "Sunnyvale"))
+#    submitButton("Predict")
+    )
+    ),
+        
   # Show a plot of the generated distribution
   mainPanel(
+conditionalPanel(
+      condition = "input.current == true",       
     p(textOutput("caption")),
-    htmlOutput("gvis"),
-    
+    htmlOutput("gvis")
+    ),
+conditionalPanel(
+      condition = "input.predict == true",       
     p(textOutput("caption1")),
     htmlOutput("gvis1")
     )
-    )))
+    )
+    ))
