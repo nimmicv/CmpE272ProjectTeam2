@@ -56,7 +56,14 @@ shinyUI(div(style="background-image: url('http://2.bp.blogspot.com/_oigT0GOX_oY/
                   "San Jose" = "San Jose",
                   "Sunnyvale" = "Sunnyvale",
                   "Campbell" = "Campbell"))),
-    helpText("Note:All the data collected are real data from FBI websites.")
+    helpText("Note:All the data collected are real data from FBI websites."),
+               p("The CrazyRacoon Team"),
+               a(href="http://in.linkedin.com/pub/nimmi-cv/14/714/292", target="_blank", "Nimmi, "),
+               a(href="http://in.linkedin.com", target="_blank", "Priyanka, "),
+               a(href="http://www.linkedin.com/pub/shruthi-raghunath/8/261/52a", target="_blank", "Shruthi, "),
+               a(href="http://in.linkedin.com", target="_blank", "Veenu"),
+               p("Our Guide"),
+               a(href="http://www.linkedin.com/in/ranjanr", target="_blank", "Rakesh Ranjan")
     
     #submitButton("Update View")
   ),
