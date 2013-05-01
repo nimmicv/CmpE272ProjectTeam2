@@ -15,16 +15,30 @@ shinyServer(function(input,output){
   
   
   output$caption <- renderText({formulaText()})
+  
+  output$gvis2 <- renderGvis({
+    data1<- SantaClaraCountyCrimeData3[SantaClaraCountyCrimeData3$City==input$city1,]
+    data2<-SantaClaraCountyCrimeData3[SantaClaraCountyCrimeData3$City==input$city2,]
+    data<-rbind(data1,data2)
+    gvisTable(data)
+  })
+  
   output$gvis <- renderGvis({
     data1<- SantaClaraCountyCrimeData3[SantaClaraCountyCrimeData3$City==input$city1,]
     data2<-SantaClaraCountyCrimeData3[SantaClaraCountyCrimeData3$City==input$city2,]
     data<-rbind(data1,data2)
     gvisMotionChart(data,idvar="City",timevar="Year")
   })
-  output$help <- renderText({formulaText()})
-  output$basePlot <-renderPlot({
-    plot(SantaClaraCountyCrimeData3)
-  })
+  
+  output$downloadData <- downloadHandler(
+    filename = function() { paste(input$city1,"-",input$city2, '.csv', sep='') },
+    content = function(file) {
+      data1<- SantaClaraCountyCrimeData3[SantaClaraCountyCrimeData3$City==input$city1,]
+      data2<-SantaClaraCountyCrimeData3[SantaClaraCountyCrimeData3$City==input$city2,]
+      data<-rbind(data1,data2)
+      write.csv(data, file)
+    }
+  )
   
   output$gvis1 <- renderGvis({
     SantaClaraData2 <- read.csv("SantaClaraCountyCrimeData3.csv")
