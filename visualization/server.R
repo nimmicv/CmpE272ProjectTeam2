@@ -1,3 +1,6 @@
+wd<-getwd()
+setwd(wd)
+
 library(shiny)
 library(googleVis)
 library(datasets)
@@ -6,17 +9,17 @@ SantaClaraCountyCrimeData3 <- read.csv("SantaClaraCountyCrimeData3.csv")
 
 shinyServer(function(input,output){
   formulaText <- reactive({
-   paste(input$city1,"~",input$city2)
+    paste(input$city1,"~",input$city2)
   })
- 
- 
+  
+  
   
   output$caption <- renderText({formulaText()})
   output$gvis <- renderGvis({
-  data1<- SantaClaraCountyCrimeData3[SantaClaraCountyCrimeData3$City==input$city1,]
-  data2<-SantaClaraCountyCrimeData3[SantaClaraCountyCrimeData3$City==input$city2,]
-  data<-rbind(data1,data2)
-  gvisMotionChart(data,idvar="City",timevar="Year")
+    data1<- SantaClaraCountyCrimeData3[SantaClaraCountyCrimeData3$City==input$city1,]
+    data2<-SantaClaraCountyCrimeData3[SantaClaraCountyCrimeData3$City==input$city2,]
+    data<-rbind(data1,data2)
+    gvisMotionChart(data,idvar="City",timevar="Year")
   })
   output$help <- renderText({formulaText()})
   output$basePlot <-renderPlot({
@@ -50,5 +53,5 @@ shinyServer(function(input,output){
     gvisMotionChart(test, idvar = "City", timevar = "year")
   })
   
-
+  
 })
