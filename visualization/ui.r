@@ -12,11 +12,13 @@ shinyUI( div(style="background-image: url('http://2.bp.blogspot.com/_oigT0GOX_oY
  ),
     selectInput("Choice",
                 "Select your Choice",
-                list("Visualize" = 1,
+                list("Select" = 0,
+                     "Visualize" = 1,
                      "View Table Data" = 3,
                      "Predict" = 2
                      )
                 ),
+               
     conditionalPanel(condition<-"input.Choice==2",selectInput("city", 
                                                               "Select City",
                                                               list(
@@ -30,7 +32,7 @@ shinyUI( div(style="background-image: url('http://2.bp.blogspot.com/_oigT0GOX_oY
                                                                 "Santa Clara" = "Santa Clara",
                                                                 "San Jose" = "San Jose",
                                                                 "Sunnyvale" = "Sunnyvale"))),
-    conditionalPanel(condition<-"input.Choice!=2",selectInput("city1", 
+    conditionalPanel(condition<-"input.Choice==1 || input.Choice==3",selectInput("city1", 
                 "Select City 1",
                 list(
                   "Campbell" = "Campbell",
@@ -44,7 +46,7 @@ shinyUI( div(style="background-image: url('http://2.bp.blogspot.com/_oigT0GOX_oY
                   "San Jose" = "San Jose",
                   "Sunnyvale" = "Sunnyvale"))),
     
-    conditionalPanel(condition<-"input.Choice!=2",selectInput("city2", 
+    conditionalPanel(condition<-"input.Choice==1 || input.Choice ==3",selectInput("city2", 
                 "Select City 2",
                 list(
                   
