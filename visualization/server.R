@@ -55,13 +55,13 @@ shinyServer(function(input,output){
     test.frame1 <- alldata
     test.frame2 <- alldata
     test.frame3 <- alldata
-    test.frame1 <- data.frame(City= input$city, Year= 2012:2016, Population=0)
+    test.frame1 <- data.frame(City= input$city, Year= 2014:2018, Population=0)
     population.frame1 <- predict.lm(mod1,test.frame1)
-    test.frame2 <-data.frame(City= input$city, Year= 2012:2016,Population=population.frame1, propertyCrime=0)
+    test.frame2 <-data.frame(City= input$city, Year= 2014:2018,Population=population.frame1, propertyCrime=0)
     propertyCrime.frame2 <- predict.lm(mod2,test.frame2)
-    test.frame3 <-data.frame(City= input$city, Year= 2012:2016,propertyCrime=propertyCrime.frame2, Unemployment=0)
+    test.frame3 <-data.frame(City= input$city, Year= 2014:2018,propertyCrime=propertyCrime.frame2, Unemployment=0)
     UnemploymentRate.frame3 <- predict.lm(mod3,test.frame3)
-    data <- data.frame (City = input$city, year = 2012:2016, Population = population.frame1[1:5], propertyCrime = propertyCrime.frame2[1:5], UnemploymentRate = UnemploymentRate.frame3[1:5])
+    data <- data.frame (City = input$city, year = 2014:2018, Population = population.frame1[1:5], propertyCrime = propertyCrime.frame2[1:5], UnemploymentRate = UnemploymentRate.frame3[1:5])
     write.csv(data, file ="prediction.csv")
     test<-read.csv("prediction.csv")
     
